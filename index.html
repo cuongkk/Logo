@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        object-fit: cover;
+      }
+      .container {
+        margin: 0 60px;
+        font-family: Arial, sans-serif;
+      }
+      .inner-head {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 16px;
+        gap: 180px;
+      }
+      .inner-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        font-weight: 700;
+        font-size: 25px;
+        color: #2a47d4;
+      }
+      .inner-content {
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+        flex-direction: row;
+        gap: 24px;
+      }
+      .inner-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        gap: 10px;
+      }
+      .inner-label {
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #438ec4;
+        color: #ffffff;
+      }
+      textarea {
+        width: 300px;
+        min-height: 40px;
+        padding: 5px;
+        box-sizing: border-box;
+        resize: none;
+        border: 2px solid #438ec4;
+        border-radius: 5px;
+      }
+      textarea::placeholder {
+        font-size: 14px;
+        color: #999;
+      }
+      #input-name {
+        height: 40px;
+      }
+      #input-position {
+        height: 80px;
+      }
+      #input-message {
+        height: 120px;
+      }
+      .card-template {
+        position: relative;
+        aspect-ratio: 1920/1080;
+        height: 576px;
+        background: url("assets/image/nen.png") no-repeat center center;
+        background-size: contain;
+      }
+      .photo-slot {
+        position: absolute;
+        top: calc(378 / 1080 * 100%);
+        left: calc(178 / 1920 * 100%);
+        width: calc(404 / 1920 * 100%);
+        height: calc(404 / 1080 * 100%);
+        overflow: hidden;
+        border-radius: 50%;
+      }
+      .photo-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+      .message-slot {
+        position: absolute;
+        top: calc(422 / 1080 * 100%);
+        left: calc(716 / 1920 * 100%);
+        width: calc(1080 / 1920 * 100%);
+        height: calc(450 / 1080 * 100%);
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 25px;
+        text-align: left;
+      }
+      .name-slot {
+        position: absolute;
+        top: calc(820 / 1080 * 100%);
+        left: calc(140 / 1920 * 100%);
+        width: calc(450 / 1920 * 100%);
+        height: calc(100 / 1080 * 100%);
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: center;
+        color: #fff;
+      }
+      .position-slot {
+        position: absolute;
+        top: calc(910 / 1080 * 100%);
+        left: calc(140 / 1920 * 100%);
+        width: calc(450 / 1920 * 100%);
+        height: calc(100 / 1080 * 100%);
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        text-align: center;
+        color: #fff;
+      }
+
+      .btn-download {
+        margin-top: 16px;
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      #input-image {
+        display: none;
+      }
+
+      .btn-choose-file {
+        padding: 5px;
+        border-radius: 4px;
+        border: none;
+        background-color: #438ec4;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 400;
+        display: inline-block;
+      }
+      .btn-choose-file:hover {
+        opacity: 0.9;
+      }
+      .btn-download {
+        background-color: #438ec4;
+        color: white;
+        font-weight: 600;
+      }
+      .btn-download:hover {
+        background-color: #438ec4;
+      }
+      .plate {
+        width: calc(224 / 1920 * 100%);
+        height: calc(51 / 1080 * 100%);
+        background: #108fcf;
+
+        clip-path: polygon(7% 0, /* góc trên trái lùi vào */ 100% 0, /* góc trên phải */ 93% 100%, /* góc dưới phải lùi vào */ 0 100% /* góc dưới trái */);
+
+        position: absolute;
+        top: calc(756 / 1080 * 100%);
+        left: calc(192 / 1920 * 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <img class="background" src="assets/image/Background.png" alt="background" />
+    <div class="container">
+      <div class="inner-head">
+        <div class="inner-logo">
+          <img src="assets/image/Logo.png" alt="logo" width="100" />
+        </div>
+        <div class="inner-title">
+          <span>ĐẠI HỘI ĐẠI BIỂU ĐOÀN TNCS HỒ CHÍ MINH TỈNH GIA LAI</span>
+          <span>LẦN THỨ I, NHIỆM KỲ 2-25-2030</span>
+        </div>
+      </div>
+      <div class="inner-content">
+        <div class="inner-infor">
+          <div class="inner-group">
+            <label for="input-image" class="btn-choose-file">Chọn ảnh</label>
+            <input type="file" id="input-image" accept="image/*" />
+          </div>
+
+          <div class="inner-group">
+            <div class="inner-label">Họ tên</div>
+            <textarea id="input-name" type="text" placeholder="Họ và tên.."></textarea>
+          </div>
+          <div class="inner-group">
+            <div class="inner-label">Chức vụ</div>
+            <textarea id="input-position" type="text" placeholder="Chức vụ.."></textarea>
+          </div>
+          <div class="inner-group">
+            <div class="inner-label">Gửi lời nhắn đến đại hội</div>
+            <textarea id="input-message" type="text" placeholder="Lời nhắn .."></textarea>
+          </div>
+          <div class="inner-group">
+            <button class="btn-download" id="btn-download">Tải lời nhắn về</button>
+          </div>
+        </div>
+        <div class="image">
+          <div id="card-preview" class="card-template">
+            <div class="plate"></div>
+            <div class="photo-slot">
+              <img id="preview-img" src="" alt="Ảnh" />
+            </div>
+            <div class="message-slot">
+              <div id="preview-message">Thông điệp sẽ hiện ở đây...</div>
+            </div>
+            <div class="name-slot">
+              <div id="preview-name">Tên sẽ hiện ở đây...</div>
+            </div>
+            <div class="position-slot">
+              <div id="preview-position">Chức vụ sẽ hiện ở đây...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+      // Lấy các phần tử input + preview
+      const inputImage = document.getElementById("input-image");
+      const inputName = document.getElementById("input-name");
+      const inputPosition = document.getElementById("input-position");
+      const inputMessage = document.getElementById("input-message");
+
+      const previewImg = document.getElementById("preview-img");
+      const previewName = document.getElementById("preview-name");
+      const previewPosition = document.getElementById("preview-position");
+      const previewMessage = document.getElementById("preview-message");
+
+      const btnDownload = document.getElementById("btn-download");
+      const cardPreview = document.getElementById("card-preview");
+
+      // Khi chọn ảnh
+      inputImage.addEventListener("change", function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Khi nhập Họ tên
+      inputName.addEventListener("input", function () {
+        previewName.textContent = this.value || "Họ và tên";
+      });
+
+      // Khi nhập Chức vụ
+      inputPosition.addEventListener("input", function () {
+        previewPosition.textContent = this.value || "Chức vụ";
+      });
+
+      // Khi nhập Lời nhắn
+      inputMessage.addEventListener("input", function () {
+        previewMessage.textContent = this.value || "Lời nhắn sẽ hiển thị ở đây";
+      });
+
+      let designHeight = null;
+
+      const bgImg = new Image();
+      bgImg.src = "assets/image/nen.png";
+      bgImg.onload = function () {
+        designHeight = bgImg.naturalHeight;
+      };
+
+      btnDownload.addEventListener("click", function () {
+        if (!cardPreview) {
+          console.error("Không tìm thấy #card-preview");
+          return;
+        }
+
+        const rect = cardPreview.getBoundingClientRect();
+        const currentHeight = rect.height;
+
+        let scale = 2;
+        if (designHeight && currentHeight) {
+          scale = designHeight / currentHeight;
+        }
+
+        console.log("currentHeight =", currentHeight, "scale =", scale);
+
+        html2canvas(cardPreview, {
+          scale: scale,
+          useCORS: true,
+          backgroundColor: null,
+        }).then((canvas) => {
+          const link = document.createElement("a");
+          link.download = "the-dai-bieu.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        });
+      });
+    </script>
+  </body>
+</html>
