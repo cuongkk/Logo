@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <style>
+      --root {
+        --font-size: 16px;
+      }
       @font-face {
         font-family: "UTM Alberta Heavy";
-        src: url("assets/font/UTM-Alberta-Heavy.ttf") format("truetype");
+        src: url("assets/fonts/UTM-Alberta-Heavy.ttf") format("truetype");
         font-weight: 700;
         font-style: normal;
       }
 
       @font-face {
         font-family: "UTM Facebook KT Italic";
-        src: url("assets/font/UTMFacebookK&TItalic.ttf") format("truetype");
-        font-weight: normal;
+        src: url("assets/fonts/UTMFacebookK&TItalic.ttf") format("truetype");
+        font-weight: 700;
         font-style: normal;
       }
 
@@ -127,25 +130,31 @@
       }
       .message-slot {
         position: absolute;
-        top: calc(422 / 1080 * 100%);
-        left: calc(716 / 1920 * 100%);
-        width: calc(1080 / 1920 * 100%);
-        height: calc(450 / 1080 * 100%);
+        top: calc(470 / 1080 * 100%);
+        left: calc(760 / 1920 * 100%);
+        width: calc(986 / 1920 * 100%);
+        max-height: calc(360 / 1080 * 100%);
         text-align: center;
+        display: inline-block;
         font-size: 16px;
         font-weight: 400;
-        padding: 25px;
         text-align: left;
         font-family: "UTM Facebook KT Italic", sans-serif;
         color: #0000ff;
         overflow: hidden;
       }
+
+      .message-slot .preview-message {
+        width: calc(100%-80px);
+        flex-wrap: wrap;
+      }
+
       .name-slot {
         position: absolute;
-        top: calc(820 / 1080 * 100%);
+        top: calc(810 / 1080 * 100%);
         left: calc(140 / 1920 * 100%);
         width: calc(450 / 1920 * 100%);
-        height: calc(100 / 1080 * 100%);
+        max-height: calc(75 / 1080 * 100%);
         text-align: center;
         font-size: 16px;
         font-weight: 400;
@@ -157,7 +166,7 @@
       }
       .position-slot {
         position: absolute;
-        top: calc(910 / 1080 * 100%);
+        top: calc(900 / 1080 * 100%);
         left: calc(140 / 1920 * 100%);
         width: calc(450 / 1920 * 100%);
         height: calc(100 / 1080 * 100%);
@@ -166,8 +175,23 @@
         font-weight: 400;
         text-align: center;
         font-family: "UTM Facebook KT Italic", sans-serif;
-        color: #fff;
+        color: #221a9d;
         overflow: hidden;
+      }
+
+      #preview-img[src=""] {
+        display: none;
+      }
+      #preview-message,
+      #preview-name,
+      #preview-position {
+        width: 100%;
+        font-size: var(--font-size);
+        line-height: 1.4;
+
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
 
       .btn-download {
@@ -219,7 +243,7 @@
         font-weight: 600;
         z-index: 1;
       }
-      @media (max-width: 1700px) {
+      @media (max-width: 1699.99px) {
         .container {
           margin: 20px;
         }
@@ -230,37 +254,79 @@
           flex-direction: column;
           align-items: center;
         }
-        .inner-infor {
-          width: 100%;
-          max-width: 400px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
       }
 
-      @media (max-width: 1400px) {
+      @media (max-width: 1399.99px) {
         .card-template {
           height: 600px;
         }
+        :root {
+          --font-size: 15px;
+        }
       }
-      @media (max-width: 1100px) {
+      @media (max-width: 1099.99px) {
         .card-template {
           height: 500px;
         }
         .inner-title {
           font-size: 20px;
         }
+        :root {
+          --font-size: 14px;
+        }
       }
-      @media (max-width: 900px) {
+      @media (max-width: 899.99px) {
         .card-template {
           height: 400px;
+        }
+        .inner-title {
+          font-size: 16px;
+        }
+        :root {
+          --font-size: 12px;
+        }
+      }
+
+      @media (max-width: 739.99px) {
+        .card-template {
+          height: 300px;
+        }
+        .inner-title {
+          display: none;
+        }
+        :root {
+          --font-size: 10px;
+        }
+      }
+      @media (max-width: 576.99px) {
+        .card-template {
+          height: 250px;
+        }
+        :root {
+          --font-size: 9px;
+        }
+      }
+
+      @media (max-width: 467.99px) {
+        .card-template {
+          height: 200px;
+        }
+        :root {
+          --font-size: 8px;
+        }
+      }
+      @media (max-width: 367.99px) {
+        .card-template {
+          height: 180px;
+        }
+        :root {
+          --font-size: 6px;
         }
       }
     </style>
   </head>
   <body>
-    <img class="background" src="assets/image/Background.png" alt="background" />
+    <img class="background" src="assets/image/Background.jpg" alt="background" />
     <div class="container">
       <div class="inner-head">
         <div class="inner-logo">
@@ -296,10 +362,10 @@
         </div>
         <div class="image">
           <div id="card-preview" class="card-template">
-            <img class="background" src="assets/image/Nen.png" alt="" />
+            <img class="background" src="assets/image/Nen.png" />
             <div class="plate"></div>
             <div class="photo-slot">
-              <img id="preview-img" src="" alt="Ảnh" />
+              <img id="preview-img" src="" />
             </div>
             <div class="message-slot">
               <div id="preview-message"></div>
@@ -346,17 +412,17 @@
 
       // Khi nhập Họ tên
       inputName.addEventListener("input", function () {
-        previewName.textContent = this.value || "Họ và tên";
+        previewName.textContent = this.value;
       });
 
       // Khi nhập Chức vụ
       inputPosition.addEventListener("input", function () {
-        previewPosition.textContent = this.value || "Chức vụ";
+        previewPosition.textContent = this.value;
       });
 
       // Khi nhập Lời nhắn
       inputMessage.addEventListener("input", function () {
-        previewMessage.textContent = this.value || "Lời nhắn sẽ hiển thị ở đây";
+        previewMessage.textContent = this.value;
       });
 
       let designHeight = null;
