@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css" />
     <title></title>
     <style>
       --root {
@@ -130,11 +131,11 @@
       }
       .message-slot {
         position: absolute;
-        top: calc(470 / 1080 * 100%);
+        top: calc(468 / 1080 * 100%);
         left: calc(760 / 1920 * 100%);
-        width: calc(986 / 1920 * 100%);
+        width: calc(988 / 1920 * 100%);
         max-height: calc(360 / 1080 * 100%);
-        text-align: center;
+        text-align: justify;
         display: inline-block;
         font-size: 16px;
         font-weight: 400;
@@ -152,9 +153,9 @@
       .name-slot {
         position: absolute;
         top: calc(810 / 1080 * 100%);
-        left: calc(146 / 1920 * 100%);
+        left: calc(150 / 1920 * 100%);
         width: calc(450 / 1920 * 100%);
-        max-height: calc(75 / 1080 * 100%);
+        max-height: calc(40 / 1080 * 100%);
         text-align: center;
         font-size: 16px;
         font-weight: 400;
@@ -169,7 +170,7 @@
         top: calc(900 / 1080 * 100%);
         left: calc(140 / 1920 * 100%);
         width: calc(450 / 1920 * 100%);
-        height: calc(100 / 1080 * 100%);
+        max-height: calc(80 / 1080 * 100%);
         text-align: center;
         font-size: 16px;
         font-weight: 400;
@@ -183,11 +184,19 @@
         display: none;
       }
       #preview-message,
+      #preview-position {
+        font-family: "UTM Facebook KT Italic", sans-serif;
+      }
+
+      #preview-name {
+        font-family: "UTM Alberta Heavy", sans-serif;
+      }
+      #preview-message,
       #preview-name,
       #preview-position {
         width: 100%;
         font-size: var(--font-size);
-        line-height: 1.4;
+        line-height: 1.2;
 
         white-space: pre-wrap;
         overflow-wrap: break-word;
@@ -312,7 +321,10 @@
           height: 200px;
         }
         :root {
-          --font-size: 8px;
+          --font-size: 7px;
+        }
+        #preview-position {
+          font-size: 6px;
         }
       }
       @media (max-width: 367.99px) {
@@ -322,6 +334,56 @@
         :root {
           --font-size: 6px;
         }
+        #preview-position {
+          font-size: 4px;
+        }
+      }
+      .crop-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none; /* ẩn mặc định */
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .crop-modal-content {
+        background: #fff;
+        padding: 16px;
+        border-radius: 8px;
+        max-width: 80vw;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .crop-modal-body {
+        flex: 1;
+        min-width: 300px;
+        min-height: 300px;
+        max-width: 70vw;
+        max-height: 60vh;
+        overflow: hidden;
+      }
+
+      #crop-image {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+      }
+
+      .crop-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .crop-modal-actions button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -334,7 +396,7 @@
         </div>
         <div class="inner-title">
           <span>ĐẠI HỘI ĐẠI BIỂU ĐOÀN TNCS HỒ CHÍ MINH TỈNH GIA LAI</span>
-          <span>LẦN THỨ I, NHIỆM KỲ 2-25-2030</span>
+          <span>LẦN THỨ I, NHIỆM KỲ 2025-2030</span>
         </div>
       </div>
       <div class="inner-content">
@@ -379,8 +441,19 @@
           </div>
         </div>
       </div>
+      <div class="crop-modal" id="crop-modal">
+        <div class="crop-modal-content">
+          <div class="crop-modal-body">
+            <img id="crop-image" src="" />
+          </div>
+          <div class="crop-modal-actions">
+            <button id="crop-confirm">Dùng ảnh này</button>
+            <button id="crop-cancel">Hủy</button>
+          </div>
+        </div>
+      </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
@@ -459,6 +532,69 @@
           link.href = canvas.toDataURL("image/png");
           link.click();
         });
+      });
+
+      const cropModal = document.getElementById("crop-modal");
+      const cropImage = document.getElementById("crop-image");
+      const cropConfirm = document.getElementById("crop-confirm");
+      const cropCancel = document.getElementById("crop-cancel");
+
+      let cropper = null;
+
+      // 1. Chọn file → mở popup crop
+      inputImage.addEventListener("change", function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          cropImage.src = e.target.result;
+
+          // Hiện popup
+          cropModal.style.display = "flex";
+
+          // Đợi ảnh load xong rồi mới init cropper
+          cropImage.onload = function () {
+            if (cropper) {
+              cropper.destroy();
+            }
+            cropper = new Cropper(cropImage, {
+              aspectRatio: 4 / 5, // tỉ lệ khung ảnh, chỉnh theo .photo-slot
+              viewMode: 1,
+              movable: true,
+              zoomable: true,
+              responsive: true,
+              background: false,
+            });
+          };
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // 2. Bấm "Dùng ảnh này" → lấy ảnh đã cắt, gán vào preview-img
+      cropConfirm.addEventListener("click", function () {
+        if (!cropper) return;
+
+        const canvas = cropper.getCroppedCanvas({
+          width: 400, // size ảnh xuất ra, bạn chỉnh được
+          height: 500,
+        });
+
+        previewImg.src = canvas.toDataURL("image/png");
+
+        // đóng popup + giải phóng cropper
+        cropper.destroy();
+        cropper = null;
+        cropModal.style.display = "none";
+      });
+
+      // 3. Hủy: đóng popup + bỏ cropper (không thay đổi preview-img)
+      cropCancel.addEventListener("click", function () {
+        if (cropper) {
+          cropper.destroy();
+          cropper = null;
+        }
+        cropModal.style.display = "none";
       });
     </script>
   </body>
