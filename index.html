@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <style>
+      @font-face {
+        font-family: "UTM Alberta Heavy";
+        src: url("assets/font/UTM-Alberta-Heavy.ttf") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "UTM Facebook KT Italic";
+        src: url("assets/font/UTMFacebookK&TItalic.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
       .background {
         position: fixed;
         top: 0;
@@ -15,7 +29,7 @@
         object-fit: cover;
       }
       .container {
-        margin: 0 60px;
+        margin: 30px 60px;
         font-family: Arial, sans-serif;
       }
       .inner-head {
@@ -67,6 +81,7 @@
         resize: none;
         border: 2px solid #438ec4;
         border-radius: 5px;
+        font-family: "UTM Facebook KT Italic", sans-serif;
       }
       textarea::placeholder {
         font-size: 14px;
@@ -84,9 +99,16 @@
       .card-template {
         position: relative;
         aspect-ratio: 1920/1080;
-        height: 576px;
-        background: url("assets/image/nen.png") no-repeat center center;
+        height: 768px;
         background-size: contain;
+      }
+      .card-template .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       .photo-slot {
         position: absolute;
@@ -114,6 +136,9 @@
         font-weight: 400;
         padding: 25px;
         text-align: left;
+        font-family: "UTM Facebook KT Italic", sans-serif;
+        color: #0000ff;
+        overflow: hidden;
       }
       .name-slot {
         position: absolute;
@@ -125,7 +150,10 @@
         font-size: 16px;
         font-weight: 400;
         text-align: center;
+        font-family: Albert;
+        font-family: "UTM Alberta Heavy", sans-serif;
         color: #fff;
+        overflow: hidden;
       }
       .position-slot {
         position: absolute;
@@ -137,7 +165,9 @@
         font-size: 16px;
         font-weight: 400;
         text-align: center;
+        font-family: "UTM Facebook KT Italic", sans-serif;
         color: #fff;
+        overflow: hidden;
       }
 
       .btn-download {
@@ -189,6 +219,44 @@
         font-weight: 600;
         z-index: 1;
       }
+      @media (max-width: 1700px) {
+        .container {
+          margin: 20px;
+        }
+        .inner-head {
+          gap: 100px;
+        }
+        .inner-content {
+          flex-direction: column;
+          align-items: center;
+        }
+        .inner-infor {
+          width: 100%;
+          max-width: 400px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 1400px) {
+        .card-template {
+          height: 600px;
+        }
+      }
+      @media (max-width: 1100px) {
+        .card-template {
+          height: 500px;
+        }
+        .inner-title {
+          font-size: 20px;
+        }
+      }
+      @media (max-width: 900px) {
+        .card-template {
+          height: 400px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -228,6 +296,7 @@
         </div>
         <div class="image">
           <div id="card-preview" class="card-template">
+            <img class="background" src="assets/image/Nen.png" alt="" />
             <div class="plate"></div>
             <div class="photo-slot">
               <img id="preview-img" src="" alt="Ảnh" />
