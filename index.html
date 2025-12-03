@@ -22,6 +22,12 @@
         font-weight: 700;
         font-style: normal;
       }
+      @font-face {
+        font-family: "UTM Swiss 721 Black Condensed";
+        src: url("assets/fonts/UTMSwiss721BlackCondensed.ttf") format("truetype");
+        font-weight: 700;
+        font-style: normal;
+      }
 
       .background {
         position: fixed;
@@ -38,20 +44,26 @@
       }
       .inner-head {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         margin-bottom: 16px;
-        gap: 180px;
+      }
+      .inner-logo {
+        width: 400px;
+        display: flex;
+        justify-content: center;
       }
       .inner-title {
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
         font-weight: 700;
-        font-size: 25px;
+        font-size: 32px;
         color: red;
-        -webkit-text-stroke: 0.4px white;
+        -webkit-text-stroke: 0.5px white;
+        font-family: "UTM Swiss 721 Black Condensed", sans-serif;
       }
       .inner-content {
         display: flex;
@@ -60,17 +72,39 @@
         flex-direction: row;
         gap: 24px;
       }
+
+      .inner-group-file {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        gap: 10px;
+      }
+
       .inner-group {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         gap: 10px;
       }
+
+      #btn-edit {
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #438ec4;
+        color: #ffffff;
+      }
+
       .inner-label {
         display: inline-block;
         margin-bottom: 4px;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         padding: 5px;
         border: 1px solid #ccc;
@@ -79,7 +113,7 @@
         color: #ffffff;
       }
       textarea {
-        width: 300px;
+        width: 400px;
         min-height: 40px;
         padding: 5px;
         box-sizing: border-box;
@@ -104,7 +138,7 @@
       .card-template {
         position: relative;
         aspect-ratio: 1920/1080;
-        height: 768px;
+        height: 700px;
         background-size: contain;
       }
       .card-template .background {
@@ -138,7 +172,7 @@
         max-height: calc(360 / 1080 * 100%);
         text-align: justify;
         display: inline-block;
-        font-size: 16px;
+        font-size: 24px;
         font-weight: 400;
         text-align: left;
         font-family: "UTM Facebook KT Italic", sans-serif;
@@ -153,7 +187,7 @@
 
       .name-slot {
         position: absolute;
-        top: calc(810 / 1080 * 100%);
+        top: calc(820 / 1080 * 100%);
         left: calc(150 / 1920 * 100%);
         width: calc(450 / 1920 * 100%);
         max-height: calc(40 / 1080 * 100%);
@@ -216,14 +250,15 @@
       }
 
       .btn-choose-file {
-        padding: 5px;
-        border-radius: 4px;
-        border: none;
-        background-color: #438ec4;
-        color: #fff;
-        cursor: pointer;
-        font-weight: 400;
         display: inline-block;
+        margin-bottom: 4px;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #438ec4;
+        color: #ffffff;
       }
       .btn-choose-file:hover {
         opacity: 0.9;
@@ -257,12 +292,15 @@
         .container {
           margin: 20px;
         }
-        .inner-head {
-          gap: 100px;
-        }
         .inner-content {
           flex-direction: column;
           align-items: center;
+        }
+        .inner-head {
+          gap: 100px;
+        }
+        .card-template {
+          height: 650px;
         }
       }
 
@@ -273,13 +311,23 @@
         :root {
           --font-size: 15px;
         }
+        .inner-head {
+          gap: 50px;
+        }
+        .inner-title {
+          font-size: 24px;
+          width: auto;
+        }
+        .inner-logo {
+          width: auto;
+        }
       }
       @media (max-width: 1099.99px) {
         .card-template {
           height: 500px;
         }
         .inner-title {
-          font-size: 20px;
+          font-size: 22px;
         }
         :root {
           --font-size: 14px;
@@ -290,7 +338,7 @@
           height: 400px;
         }
         .inner-title {
-          font-size: 16px;
+          font-size: 18px;
         }
         :root {
           --font-size: 12px;
@@ -302,19 +350,19 @@
           height: 300px;
         }
         .inner-head {
-          gap: 50px;
+          gap: 0px;
         }
         .inner-logo img {
           width: 80px;
         }
         .inner-title {
-          font-size: 14px;
+          font-size: 16px;
         }
         :root {
           --font-size: 10px;
         }
       }
-      @media (max-width: 576.99px) {
+      @media (max-width: 596.99px) {
         .card-template {
           height: 250px;
         }
@@ -325,14 +373,14 @@
           width: 60px;
         }
         .inner-title {
-          font-size: 10px;
+          font-size: 12px;
         }
         :root {
           --font-size: 9px;
         }
       }
 
-      @media (max-width: 467.99px) {
+      @media (max-width: 479.99px) {
         .card-template {
           height: 200px;
         }
@@ -343,7 +391,7 @@
           width: 30px;
         }
         .inner-title {
-          font-size: 9px;
+          font-size: 11px;
         }
         :root {
           --font-size: 7px;
@@ -352,7 +400,7 @@
           font-size: 6px;
         }
       }
-      @media (max-width: 367.99px) {
+      @media (max-width: 397.99px) {
         .card-template {
           height: 180px;
         }
@@ -363,13 +411,19 @@
           width: 30px;
         }
         .inner-title {
-          font-size: 8px;
+          font-size: 10px;
         }
         :root {
           --font-size: 6px;
         }
         #preview-position {
           font-size: 4px;
+        }
+        .inner-label {
+          font-size: 14px;
+        }
+        textarea {
+          width: 300px;
         }
       }
       .crop-modal {
@@ -419,6 +473,17 @@
         border: none;
         cursor: pointer;
       }
+      /* Bo tròn khung crop & mặt nạ ở giữa */
+      .cropper-view-box,
+      .cropper-face {
+        border-radius: 50% !important;
+      }
+
+      /* Có thể thêm viền cho dễ nhìn hơn */
+      .cropper-view-box {
+        border: 2px solid #fff !important;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+      }
     </style>
   </head>
   <body>
@@ -435,9 +500,10 @@
       </div>
       <div class="inner-content">
         <div class="inner-infor">
-          <div class="inner-group">
+          <div class="inner-group-file">
             <label for="input-image" class="btn-choose-file">Chọn ảnh</label>
             <input type="file" id="input-image" accept="image/*" />
+            <button id="btn-edit" type="button" class="btn-edit" disabled>Chỉnh sửa ảnh</button>
           </div>
 
           <div class="inner-group">
@@ -572,35 +638,42 @@
       const cropImage = document.getElementById("crop-image");
       const cropConfirm = document.getElementById("crop-confirm");
       const cropCancel = document.getElementById("crop-cancel");
+      const btnEdit = document.getElementById("btn-edit");
 
       let cropper = null;
+      let originalImageDataUrl = null; // lưu ảnh gốc lần đầu chọn
 
-      // 1. Chọn file → mở popup crop
+      // Hàm mở popup crop từ ảnh gốc
+      function openCropperFromOriginal() {
+        if (!originalImageDataUrl) return;
+
+        cropImage.src = originalImageDataUrl;
+        cropModal.style.display = "flex";
+
+        cropImage.onload = function () {
+          if (cropper) {
+            cropper.destroy();
+          }
+          cropper = new Cropper(cropImage, {
+            aspectRatio: 1, // tỉ lệ khung ảnh, chỉnh theo .photo-slot
+            viewMode: 1,
+            movable: true,
+            zoomable: true,
+            responsive: true,
+            background: false,
+          });
+        };
+      }
+
+      // 1. Chọn file → lưu ảnh gốc → mở popup crop
       inputImage.addEventListener("change", function () {
         const file = this.files[0];
         if (!file) return;
 
         const reader = new FileReader();
         reader.onload = function (e) {
-          cropImage.src = e.target.result;
-
-          // Hiện popup
-          cropModal.style.display = "flex";
-
-          // Đợi ảnh load xong rồi mới init cropper
-          cropImage.onload = function () {
-            if (cropper) {
-              cropper.destroy();
-            }
-            cropper = new Cropper(cropImage, {
-              aspectRatio: 4 / 5, // tỉ lệ khung ảnh, chỉnh theo .photo-slot
-              viewMode: 1,
-              movable: true,
-              zoomable: true,
-              responsive: true,
-              background: false,
-            });
-          };
+          originalImageDataUrl = e.target.result; // LƯU ảnh gốc
+          openCropperFromOriginal(); // Mở popup crop luôn
         };
         reader.readAsDataURL(file);
       });
@@ -610,25 +683,36 @@
         if (!cropper) return;
 
         const canvas = cropper.getCroppedCanvas({
-          width: 400, // size ảnh xuất ra, bạn chỉnh được
+          width: 400, // kích thước ảnh xuất ra, bạn chỉnh được
           height: 500,
         });
 
+        // Đưa ảnh cắt vào khung preview của thẻ
         previewImg.src = canvas.toDataURL("image/png");
 
-        // đóng popup + giải phóng cropper
+        // Đóng popup + hủy cropper
         cropper.destroy();
         cropper = null;
         cropModal.style.display = "none";
+
+        // Bật nút "Chỉnh sửa ảnh"
+        btnEdit.disabled = false;
+        btnEdit.style.opacity = 1;
       });
 
-      // 3. Hủy: đóng popup + bỏ cropper (không thay đổi preview-img)
+      // 3. Hủy: đóng popup, không đổi preview-img
       cropCancel.addEventListener("click", function () {
         if (cropper) {
           cropper.destroy();
           cropper = null;
         }
         cropModal.style.display = "none";
+      });
+
+      // 4. Nhấn "Chỉnh sửa ảnh" → mở lại popup crop từ ảnh gốc
+      btnEdit.addEventListener("click", function () {
+        // Không cần chọn file lại, dùng originalImageDataUrl
+        openCropperFromOriginal();
       });
     </script>
   </body>
