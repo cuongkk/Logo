@@ -12,7 +12,7 @@
       @font-face {
         font-family: "UTM Alberta Heavy";
         src: url("assets/fonts/UTM-Alberta-Heavy.ttf") format("truetype");
-        src: url("assets/fonts/UTM\ Alberta\ Heavy.woff2") format("woff2");
+        src: url("assets/fonts/UTM Alberta Heavy.woff2") format("woff2");
         font-weight: 700;
         font-style: normal;
       }
@@ -27,7 +27,7 @@
       @font-face {
         font-family: "UTM Swiss 721 Black Condensed";
         src: url("assets/fonts/UTMSwiss721BlackCondensed.ttf") format("truetype");
-        src: url("assets/fonts/UTMSwiss721BlackCondensed.woff2") format("woff2");
+        src: url("assets/fonts/UTM Swiss 721 Black Condensed.woff2") format("woff2");
         font-weight: 700;
         font-style: normal;
       }
@@ -63,7 +63,7 @@
         justify-content: center;
         text-align: center;
         font-weight: 700;
-        font-size: 32px;
+        font-size: 30px;
         color: red;
         -webkit-text-stroke: 0.5px white;
         font-family: "UTM Swiss 721 Black Condensed", sans-serif;
@@ -92,18 +92,6 @@
         gap: 10px;
       }
 
-      #btn-edit {
-        display: inline-block;
-        margin-bottom: 4px;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #438ec4;
-        color: #ffffff;
-      }
-
       .inner-label {
         display: inline-block;
         margin-bottom: 4px;
@@ -116,14 +104,15 @@
         color: #ffffff;
       }
       textarea {
-        width: 400px;
-        min-height: 40px;
+        width: 300px;
+        min-height: 30px;
         padding: 5px;
         box-sizing: border-box;
         resize: none;
         border: 2px solid #438ec4;
         border-radius: 5px;
         font-family: "UTM Facebook KT Italic", sans-serif;
+        font-size: 16px;
       }
       textarea::placeholder {
         font-size: 14px;
@@ -141,7 +130,7 @@
       .card-template {
         position: relative;
         aspect-ratio: 1920/1080;
-        height: 700px;
+        height: 650px;
         background-size: contain;
       }
       .card-template .background {
@@ -189,7 +178,7 @@
 
       .name-slot {
         position: absolute;
-        top: calc(820 / 1080 * 100%);
+        top: calc(816 / 1080 * 100%);
         left: calc(150 / 1920 * 100%);
         width: calc(450 / 1920 * 100%);
         max-height: calc(40 / 1080 * 100%);
@@ -241,11 +230,26 @@
       }
 
       .btn-download {
-        margin-top: 16px;
-        padding: 8px 16px;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #438ec4;
+        color: #ffffff;
+      }
+      .btn-edit {
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #438ec4;
+        color: #ffffff;
       }
       #input-image {
         display: none;
@@ -290,13 +294,60 @@
         font-weight: 600;
         z-index: 1;
       }
+      .crop-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none; /* ẩn mặc định */
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .crop-modal-content {
+        background: #fff;
+        padding: 16px;
+        border-radius: 8px;
+        max-width: 80vw;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .crop-modal-body {
+        flex: 1;
+        min-width: 300px;
+        min-height: 300px;
+        max-width: 70vw;
+        max-height: 60vh;
+        overflow: hidden;
+      }
+
+      #crop-image {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+      }
+
+      .crop-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .crop-modal-actions button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+      }
+      .cropper-view-box,
+      .cropper-face {
+        border-radius: 50% !important;
+      }
       @media (max-width: 1699.99px) {
         .container {
           margin: 20px;
-        }
-        .inner-content {
-          flex-direction: column;
-          align-items: center;
         }
         .inner-head {
           gap: 100px;
@@ -306,13 +357,14 @@
         }
       }
 
-      @media (max-width: 1399.99px) {
+      @media (max-width: 1499.99px) {
         .card-template {
-          height: 600px;
+          height: 500px;
         }
         :root {
           --font-size: 15px;
         }
+
         .inner-head {
           gap: 50px;
         }
@@ -324,9 +376,13 @@
           width: auto;
         }
       }
-      @media (max-width: 1099.99px) {
+      @media (max-width: 1229.99px) {
         .card-template {
-          height: 500px;
+          height: 450px;
+        }
+        .inner-content {
+          flex-direction: column;
+          align-items: center;
         }
         .inner-title {
           font-size: 22px;
@@ -382,12 +438,12 @@
         }
       }
 
-      @media (max-width: 479.99px) {
+      @media (max-width: 499.99px) {
         .card-template {
           height: 200px;
         }
         .inner-head {
-          gap: 30px;
+          gap: 20px;
         }
         .inner-logo img {
           width: 30px;
@@ -402,83 +458,54 @@
           font-size: 6px;
         }
       }
-      @media (max-width: 397.99px) {
+      @media (max-width: 414.99px) {
+        body {
+          margin: 10px 0px;
+        }
+        .container {
+          margin: 0px;
+        }
         .card-template {
-          height: 180px;
+          height: 120px;
         }
         .inner-head {
-          gap: 10px;
+          gap: 0px;
         }
         .inner-logo img {
-          width: 30px;
+          width: 20px;
         }
         .inner-title {
-          font-size: 10px;
+          font-size: 7px;
         }
         :root {
-          --font-size: 6px;
+          --font-size: 4px;
         }
         #preview-position {
           font-size: 4px;
         }
+
+        .btn-edit,
+        .btn-choose-file,
+        .btn-download,
         .inner-label {
-          font-size: 14px;
+          font-size: 8px;
         }
         textarea {
-          width: 300px;
+          width: 200px;
+          font-size: 10px;
         }
-      }
-      .crop-modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        display: none; /* ẩn mặc định */
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-      }
-
-      .crop-modal-content {
-        background: #fff;
-        padding: 16px;
-        border-radius: 8px;
-        max-width: 80vw;
-        max-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .crop-modal-body {
-        flex: 1;
-        min-width: 300px;
-        min-height: 300px;
-        max-width: 70vw;
-        max-height: 60vh;
-        overflow: hidden;
-      }
-
-      #crop-image {
-        max-width: 100%;
-        max-height: 100%;
-        display: block;
-      }
-
-      .crop-modal-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 8px;
-      }
-      .crop-modal-actions button {
-        padding: 6px 12px;
-        border-radius: 4px;
-        border: none;
-        cursor: pointer;
-      }
-      /* Bo tròn khung crop & mặt nạ ở giữa */
-      .cropper-view-box,
-      .cropper-face {
-        border-radius: 50% !important;
+        textarea::placeholder {
+          font-size: 10px;
+        }
+        #input-name {
+          height: 30px;
+        }
+        #input-position {
+          height: 40px;
+        }
+        #input-message {
+          height: 80px;
+        }
       }
     </style>
   </head>
@@ -501,7 +528,6 @@
             <input type="file" id="input-image" accept="image/*" />
             <button id="btn-edit" type="button" class="btn-edit" disabled>Chỉnh sửa ảnh</button>
           </div>
-
           <div class="inner-group">
             <div class="inner-label">Họ tên</div>
             <textarea id="input-name" type="text" placeholder="Họ và tên.."></textarea>
@@ -511,7 +537,7 @@
             <textarea id="input-position" type="text" placeholder="Chức vụ.."></textarea>
           </div>
           <div class="inner-group">
-            <div class="inner-label">Gửi lời nhắn đến đại hội</div>
+            <div class="inner-label">Gửi lời nhắn đến Đại Hội</div>
             <textarea id="input-message" type="text" placeholder="Lời nhắn .."></textarea>
           </div>
           <div class="inner-group">
