@@ -4,22 +4,19 @@
 }
 @font-face {
   font-family: "UTM Alberta Heavy";
-  src: url("assets/fonts/UTM Alberta Heavy.ttf") format("truetype");
-  src: url("assets/fonts/UTM Alberta Heavy.woff2") format("woff2");
+  src: url("assets/fonts/UTM Alberta Heavy.ttf") format("truetype"), url("assets/fonts/UTM Alberta Heavy.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "UTM Facebook KT Italic";
-  src: url("assets/fonts/UTMFacebookK&TItalic.ttf") format("truetype");
-  src: url("assets/fonts/UTMFacebookK&TItalic.woff2") format("woff2");
+  src: url("assets/fonts/UTMFacebookK&TItalic.ttf") format("truetype"), url("assets/fonts/UTMFacebookK&TItalic.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "UTM Swiss 721 Black Condensed";
-  src: url("assets/fonts/UTM Swiss 721 Black Condensed.ttf") format("truetype");
-  src: url("assets/fonts/UTM Swiss 721 Black Condensed.woff2") format("woff2");
+  src: url("assets/fonts/UTM Swiss 721 Black Condensed.ttf") format("truetype"), url("assets/fonts/UTM Swiss 721 Black Condensed.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
