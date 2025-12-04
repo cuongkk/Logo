@@ -26,7 +26,7 @@
         font-family: "UTM Facebook KT Italic";
         src: url("assets/fonts/UTMFacebookK&TItalic.ttf") format("truetype");
         src: url("assets/fonts/UTMFacebookK&TItalic.woff2") format("woff2");
-        font-weight: 700;
+        font-weight: 400;
         font-style: normal;
       }
       @font-face {
@@ -276,9 +276,15 @@
         opacity: 0.9;
       }
       .btn-download {
+        display: inline-block;
+        margin-bottom: 4px;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
         background-color: #438ec4;
-        color: white;
-        font-weight: 600;
+        color: #ffffff;
       }
       .btn-download:hover {
         background-color: #438ec4;
@@ -546,6 +552,10 @@
             <div class="inner-label">Gửi lời nhắn đến Đại hội</div>
             <textarea id="input-message" type="text" placeholder="Lời nhắn .."></textarea>
           </div>
+          <div style="margin-bottom: 10px">
+            <label class="inner-label" for="font-size-slider">Cỡ chữ:</label>
+            <input type="range" id="font-size-slider" min="6" max="24" value="24" style="width: 200px" />
+          </div>
           <div class="inner-group">
             <button class="btn-download" id="btn-download">Tải lời nhắn về</button>
           </div>
@@ -599,6 +609,12 @@
       const btnDownload = document.getElementById("btn-download");
       const cardPreview = document.getElementById("card-preview");
 
+      const slider = document.getElementById("font-size-slider");
+
+      slider.addEventListener("input", () => {
+        const size = slider.value + "px";
+        previewMessage.style.fontSize = size;
+      });
       // Khi chọn ảnh
       inputImage.addEventListener("change", function () {
         const file = this.files[0];
