@@ -11,15 +11,26 @@ const previewMessage = document.getElementById("preview-message");
 const btnDownload = document.getElementById("btn-download");
 const cardPreview = document.getElementById("card-preview");
 
-const slider = document.getElementById("font-size-slider");
-const currentFontSize = parseInt(getComputedStyle(previewMessage).fontSize);
+const sliderMessage = document.getElementById("slider-message");
+const currentFontSizeMessage = parseInt(getComputedStyle(previewMessage).fontSize);
 
-slider.value = currentFontSize;
+sliderMessage.value = currentFontSizeMessage;
 
-slider.addEventListener("input", () => {
-  const size = slider.value + "px";
+sliderMessage.addEventListener("input", () => {
+  const size = sliderMessage.value + "px";
   previewMessage.style.fontSize = size;
 });
+
+const sliderName = document.getElementById("slider-name");
+const currentFontSizeName = parseInt(getComputedStyle(previewName).fontSize);
+
+sliderName.value = currentFontSizeName;
+
+sliderName.addEventListener("input", () => {
+  const size = sliderName.value + "px";
+  previewName.style.fontSize = size;
+});
+
 // Khi chọn ảnh
 inputImage.addEventListener("change", function () {
   const file = this.files[0];
