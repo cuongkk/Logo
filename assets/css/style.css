@@ -211,13 +211,13 @@ textarea::placeholder {
   display: none;
 }
 #preview-message {
-  /* font-family: "UTM Facebook KT Italic", sans-serif; */
+  font-family: "UTM Facebook KT Italic", sans-serif;
 }
 #preview-position {
-  /* font-family: "UTM Facebook KT Italic", sans-serif; */
+  font-family: "UTM Facebook KT Italic", sans-serif;
 }
 #preview-name {
-  /* font-family: "UTM Alberta Heavy", sans-serif; */
+  font-family: "UTM Alberta Heavy", sans-serif;
 }
 #preview-message,
 #preview-name,
