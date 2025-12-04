@@ -554,7 +554,7 @@
           </div>
           <div style="margin-bottom: 10px">
             <label class="inner-label" for="font-size-slider">Cỡ chữ:</label>
-            <input type="range" id="font-size-slider" min="6" max="24" value="24" style="width: 200px" />
+            <input type="range" id="font-size-slider" min="4" max="24" style="width: 200px" />
           </div>
           <div class="inner-group">
             <button class="btn-download" id="btn-download">Tải lời nhắn về</button>
@@ -610,6 +610,9 @@
       const cardPreview = document.getElementById("card-preview");
 
       const slider = document.getElementById("font-size-slider");
+      const currentFontSize = parseInt(getComputedStyle(previewMessage).fontSize);
+
+      slider.value = currentFontSize;
 
       slider.addEventListener("input", () => {
         const size = slider.value + "px";
