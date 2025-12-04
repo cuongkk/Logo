@@ -1,0 +1,466 @@
+--root {
+  --font-size: 16px;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "UTM Alberta Heavy";
+  src: url("assets/fonts/UTM-Alberta-Heavy.ttf") format("truetype");
+  src: url("assets/fonts/UTM Alberta Heavy.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UTM Facebook KT Italic";
+  src: url("assets/fonts/UTMFacebookK&TItalic.ttf") format("truetype");
+  src: url("assets/fonts/UTMFacebookK&TItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "UTM Swiss 721 Black Condensed";
+  src: url("assets/fonts/UTMSwiss721BlackCondensed.ttf") format("truetype");
+  src: url("assets/fonts/UTM Swiss 721 Black Condensed.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+.container {
+  margin: 30px 60px;
+  font-family: Arial, sans-serif;
+}
+.inner-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.inner-logo {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+}
+.inner-title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+  color: red;
+  -webkit-text-stroke: 0.5px white;
+  font-family: "UTM Swiss 721 Black Condensed", sans-serif;
+}
+.inner-content {
+  display: flex;
+  justify-content: center;
+  align-self: flex-start;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.inner-group-file {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+.inner-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+.inner-label,
+.btn-edit,
+.btn-choose-file,
+.btn-download {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #438ec4;
+  color: #ffffff;
+}
+
+#input-image {
+  display: none;
+}
+
+.btn-choose-file:hover {
+  opacity: 0.9;
+}
+textarea {
+  width: 300px;
+  min-height: 30px;
+  padding: 5px;
+  box-sizing: border-box;
+  resize: none;
+  border: 2px solid #438ec4;
+  border-radius: 5px;
+  font-family: "UTM Facebook KT Italic", sans-serif;
+  font-size: 16px;
+}
+textarea::placeholder {
+  font-size: 14px;
+  color: #999;
+}
+#input-name {
+  height: 40px;
+}
+#input-position {
+  height: 80px;
+}
+#input-message {
+  height: 120px;
+}
+.card-template {
+  position: relative;
+  aspect-ratio: 1920/1080;
+  height: 650px;
+  background-size: contain;
+}
+.card-template .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-slot {
+  position: absolute;
+  top: calc(378 / 1080 * 100%);
+  left: calc(178 / 1920 * 100%);
+  width: calc(404 / 1920 * 100%);
+  height: calc(404 / 1080 * 100%);
+  overflow: hidden;
+  border-radius: 50%;
+}
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+.message-slot {
+  position: absolute;
+  top: calc(456 / 1080 * 100%);
+  left: calc(760 / 1920 * 100%);
+  width: calc(988 / 1920 * 100%);
+  height: calc(380 / 1080 * 100%);
+  text-align: justify;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 400;
+  color: #025ab6;
+  overflow: hidden;
+  font-family: "UTM Facebook KT Italic", sans-serif;
+}
+
+.message-slot .preview-message {
+  flex-wrap: wrap;
+}
+
+.name-slot {
+  position: absolute;
+  top: calc(816 / 1080 * 100%);
+  left: calc(164 / 1920 * 100%);
+  width: calc(436 / 1920 * 100%);
+  height: calc(40 / 1080 * 100%);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  font-family: "UTM Alberta Heavy", sans-serif;
+}
+
+.position-slot {
+  position: absolute;
+  top: calc(900 / 1080 * 100%);
+  left: calc(150 / 1920 * 100%);
+  width: calc(450 / 1920 * 100%);
+  height: calc(80 / 1080 * 100%);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: #221a9d;
+  overflow: hidden;
+  font-family: "UTM Facebook KT Italic", sans-serif;
+}
+
+#preview-img[src=""] {
+  display: none;
+}
+#preview-message {
+  /* font-family: "UTM Facebook KT Italic", sans-serif; */
+}
+#preview-position {
+  /* font-family: "UTM Facebook KT Italic", sans-serif; */
+}
+#preview-name {
+  /* font-family: "UTM Alberta Heavy", sans-serif; */
+}
+#preview-message,
+#preview-name,
+#preview-position {
+  width: 100%;
+  height: 100%;
+  font-size: var(--font-size);
+  line-height: 1.2;
+
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.plate {
+  width: calc(224 / 1920 * 100%);
+  height: calc(51 / 1080 * 100%);
+  background: #108fcf;
+  clip-path: polygon(7% 0, /* góc trên trái lùi vào */ 100% 0, /* góc trên phải */ 93% 100%, /* góc dưới phải lùi vào */ 0 100% /* góc dưới trái */);
+  position: absolute;
+  top: calc(756 / 1080 * 100%);
+  left: calc(192 / 1920 * 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  z-index: 1;
+}
+.crop-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none; /* ẩn mặc định */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.crop-modal-content {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  max-width: 80vw;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.crop-modal-body {
+  flex: 1;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 70vw;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+#crop-image {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.crop-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.crop-modal-actions button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50% !important;
+}
+@media (max-width: 1699.99px) {
+  .container {
+    margin: 20px;
+  }
+  .inner-head {
+    gap: 100px;
+  }
+  .card-template {
+    height: 650px;
+  }
+}
+
+@media (max-width: 1499.99px) {
+  :root {
+    --font-size: 15px;
+  }
+  .card-template {
+    height: 500px;
+  }
+  .inner-head {
+    gap: 50px;
+  }
+  .inner-title {
+    font-size: 24px;
+    width: auto;
+  }
+  .inner-logo {
+    width: auto;
+  }
+}
+@media (max-width: 1229.99px) {
+  :root {
+    --font-size: 14px;
+  }
+  .card-template {
+    height: 450px;
+  }
+  .inner-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .inner-title {
+    font-size: 22px;
+  }
+}
+@media (max-width: 899.99px) {
+  :root {
+    --font-size: 12px;
+  }
+  .card-template {
+    height: 400px;
+  }
+  .inner-title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 739.99px) {
+  :root {
+    --font-size: 10px;
+  }
+  .card-template {
+    height: 300px;
+  }
+  .inner-head {
+    gap: 0px;
+  }
+  .inner-logo img {
+    width: 80px;
+  }
+  .inner-title {
+    font-size: 16px;
+  }
+}
+@media (max-width: 596.99px) {
+  :root {
+    --font-size: 9px;
+  }
+  .card-template {
+    height: 250px;
+  }
+  .inner-head {
+    gap: 40px;
+  }
+  .inner-logo img {
+    width: 60px;
+  }
+  .inner-title {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 499.99px) {
+  :root {
+    --font-size: 7px;
+  }
+  .card-template {
+    height: 200px;
+  }
+  .inner-head {
+    gap: 20px;
+  }
+  .inner-logo img {
+    width: 30px;
+  }
+  .inner-title {
+    font-size: 11px;
+  }
+  #preview-position {
+    font-size: 6px;
+  }
+  textarea {
+    font-size: 12px;
+  }
+  textarea::placeholder {
+    font-size: 12px;
+  }
+}
+@media (max-width: 414.99px) {
+  :root {
+    --font-size: 4px;
+  }
+  body {
+    margin: 10px 0px;
+  }
+  .container {
+    margin: 10px;
+  }
+  .card-template {
+    height: 160px;
+  }
+  .inner-head {
+    gap: 0px;
+  }
+  .inner-logo img {
+    width: 20px;
+  }
+  .inner-title {
+    font-size: 10px;
+  }
+  #preview-message {
+    font-size: 6px;
+  }
+  .btn-edit,
+  .btn-choose-file,
+  .btn-download,
+  .inner-label {
+    font-size: 8px;
+  }
+  textarea {
+    width: 300px;
+    font-size: 10px;
+  }
+  textarea::placeholder {
+    font-size: 10px;
+  }
+  #input-name {
+    height: 30px;
+  }
+  #input-position {
+    height: 40px;
+  }
+  #input-message {
+    height: 80px;
+  }
+}
