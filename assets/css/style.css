@@ -7,15 +7,13 @@
   src: url("../fonts/UTM Alberta Heavy.woff2") format("woff2"), url("../fonts/UTM Alberta Heavy.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: "UTM Facebook KT Italic";
-  src: url("../fonts/UTMFacebookK&TItalic.woff2") format("woff2"), url("../fonts/UTMFacebookK&TItalic.ttf") format("truetype");
+  src: url("../fonts/UTM Facebook KT Italic.woff2") format("woff2"), url("../fonts/UTM Facebook KT Italic.ttf") format("truetype");
   font-weight: 400;
-  font-style: italic; /* font này là Italic thì nên để italic */
-  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
@@ -23,7 +21,6 @@
   src: url("../fonts/UTM Swiss 721 Black Condensed.woff2") format("woff2"), url("../fonts/UTM Swiss 721 Black Condensed.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
 }
 .background {
   position: fixed;

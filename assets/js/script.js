@@ -31,6 +31,16 @@ sliderName.addEventListener("input", () => {
   previewName.style.fontSize = size;
 });
 
+const sliderPosition = document.getElementById("slider-position");
+const currentFontSizePosition = parseInt(getComputedStyle(previewPosition).fontSize);
+
+sliderPosition.value = currentFontSizePosition;
+
+sliderPosition.addEventListener("input", () => {
+  const size = sliderPosition.value + "px";
+  previewPosition.style.fontSize = size;
+});
+
 // Khi chọn ảnh
 inputImage.addEventListener("change", function () {
   const file = this.files[0];
