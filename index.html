@@ -37,6 +37,13 @@
         font-style: normal;
       }
 
+      @font-face {
+        font-family: "Helvetica Neue-Medium";
+        src: url("assets/fonts/HelveticaNeue-Medium.ttf") format("truetype");
+        src: url("assets/fonts/Helvetica Neue-Medium.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
       .background {
         position: fixed;
         top: 0;
@@ -116,7 +123,7 @@
         resize: none;
         border: 2px solid #438ec4;
         border-radius: 5px;
-        font-family: "UTM Facebook KT Italic", sans-serif;
+        font-family: "Helvetica Neue-Medium", sans-serif;
         font-size: 16px;
       }
       textarea::placeholder {
@@ -163,7 +170,7 @@
       }
       .message-slot {
         position: absolute;
-        top: calc(468 / 1080 * 100%);
+        top: calc(456 / 1080 * 100%);
         left: calc(760 / 1920 * 100%);
         width: calc(988 / 1920 * 100%);
         height: calc(360 / 1080 * 100%);
@@ -171,8 +178,7 @@
         display: inline-block;
         font-size: 24px;
         font-weight: 400;
-        font-family: "UTM Facebook KT Italic", sans-serif;
-        color: #0000ff;
+        color: #025ab6;
         overflow: hidden;
       }
 
@@ -192,7 +198,6 @@
         font-weight: 400;
         text-align: center;
         font-family: Albert;
-        font-family: "UTM Alberta Heavy", sans-serif;
         color: #fff;
         overflow: hidden;
       }
@@ -206,7 +211,6 @@
         font-size: 16px;
         font-weight: 400;
         text-align: center;
-        font-family: "UTM Facebook KT Italic", sans-serif;
         color: #221a9d;
         overflow: hidden;
       }
@@ -214,9 +218,12 @@
       #preview-img[src=""] {
         display: none;
       }
-      #preview-message,
+      #preview-message {
+        font-family: "Helvetica Neue-Medium", sans-serif;
+      }
       #preview-position {
         font-family: "UTM Facebook KT Italic", sans-serif;
+        -webkit-text-stroke: 0.4px white;
       }
 
       #preview-name {
@@ -595,7 +602,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
-      // Lấy các phần tử input + preview
       const inputImage = document.getElementById("input-image");
       const inputName = document.getElementById("input-name");
       const inputPosition = document.getElementById("input-position");
