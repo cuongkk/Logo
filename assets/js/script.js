@@ -184,3 +184,12 @@ btnEdit.addEventListener("click", function () {
   // Không cần chọn file lại, dùng originalImageDataUrl
   openCropperFromOriginal();
 });
+
+const btn = document.getElementById("btn-download");
+
+btn.addEventListener("click", () => {
+  gtag("event", "download_message_click", {
+    event_category: "button",
+    event_label: "download_message",
+  });
+});
